@@ -22,6 +22,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -41,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.12.5"
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.12"
   }
 }
