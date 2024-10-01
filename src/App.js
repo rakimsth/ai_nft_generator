@@ -29,16 +29,19 @@ function App() {
 
   const loadBlockchainData = useCallback(async () => {
     if (window.ethereum === undefined) {
-      alert("Metamask wallet is not installed");
+      alert("Wallet is not detected");
       return;
     } else {
       const ethProvider = new ethers.BrowserProvider(window.ethereum);
       const network = await ethProvider.getNetwork();
-      const nft = new ethers.Contract(
-        config[network.chainId].nft.address,
-        NFT,
-        ethProvider
-      );
+
+      const nftAddress = config[network.chainId]?.nft?.address;
+      // To prevent nft not defined error
+      if (!nftAddress) {
+        console.error("NFT address not found for this network");
+        return;
+      }
+      const nft = new ethers.Contract(nftAddress, NFT, ethProvider);
       setNFT(nft);
       setProvider(ethProvider);
     }
@@ -135,7 +138,7 @@ function App() {
 
   return (
     <div>
-      <Navigation account={account} setAccount={setAccount} />
+      <Navigation />
       <div className="form">
         <form onSubmit={submitHandler}>
           <input
