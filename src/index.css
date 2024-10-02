@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Play:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Play:wght@400;700&display=swap");
 
 * {
   margin: 0;
@@ -7,9 +7,9 @@
 }
 
 :root {
-  --clr-white: #FFFFFF;
+  --clr-white: #ffffff;
   --clr-black: #202020;
-  --clr-blue: #6C63FF;
+  --clr-blue: #6c63ff;
   --clr-blue-2: #4c46b6;
 }
 
@@ -55,7 +55,7 @@ nav {
   border-radius: 4px;
 
   font-family: "Play";
-  font-size: 1.10em;
+  font-size: 1.1em;
   font-weight: 600;
 
   cursor: pointer;
@@ -83,7 +83,7 @@ form {
   align-items: flex-start;
   flex-direction: column;
 
-  margin: 0 25px
+  margin: 0 25px;
 }
 
 form input[type="text"] {
@@ -95,7 +95,7 @@ form input[type="text"] {
   border: 1px solid var(--clr-blue);
   border-radius: 4px;
 
-  font-size: 1.10em;
+  font-size: 1.1em;
 }
 
 form input[type="submit"] {
@@ -111,7 +111,7 @@ form input[type="submit"] {
   border-radius: 4px;
 
   font-family: "Play";
-  font-size: 1.10em;
+  font-size: 1.1em;
   font-weight: 400;
 
   cursor: pointer;
