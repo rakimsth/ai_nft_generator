@@ -22,6 +22,7 @@ function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [imgData, setImgData] = useState(null);
   const [url, setURL] = useState(null);
 
   const [message, setMessage] = useState("");
@@ -54,11 +55,22 @@ function App() {
       window.alert("Please provide a name and description");
       return;
     }
+    setImgData(null);
     setIsWaiting(true);
     // Call AI API to generate a image based on description
-    const imageData = await createImage();
+    const imageUrl = await createImage();
+    if (imageUrl) setIsWaiting(false);
+  };
+
+  const handleMint = async (e) => {
+    e.preventDefault();
+    if (!imgData) {
+      window.alert("Please generate image to start mint");
+      return;
+    }
+    setIsWaiting(true);
     // Upload image to IPFS (Pinata)
-    uploadImage(imageData)
+    uploadImage(imgData)
       .then((url) => mintImage(url))
       .then(() => {
         setIsWaiting(false);
@@ -95,6 +107,7 @@ function App() {
     const base64data = Buffer.from(data).toString("base64");
     const img = `data:${type};base64,` + base64data; // <-- This is so we can render it on the page
     setImage(img);
+    setImgData(data);
     return data;
   };
 
@@ -167,7 +180,11 @@ function App() {
             onChange={(e) => setDescription(e.target.value)}
             rows="4"
           ></textarea>
-          <input type="submit" value="Create & Mint" />
+          <div className="d-flex justify-content-between">
+            <input type="submit" value="Create" />
+            &nbsp;
+            <input type="button" value="Mint" onClick={handleMint} />
+          </div>
         </form>
 
         <div className="image">

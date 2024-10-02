@@ -10,6 +10,8 @@
   --clr-white: #ffffff;
   --clr-black: #202020;
   --clr-blue: #6c63ff;
+  --clr-purple: #9700e9;
+  --clr-purple-2: #4d0177;
   --clr-blue-2: #4c46b6;
 }
 
@@ -31,9 +33,8 @@ nav {
 
 .nav__brand {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-
   padding: 20px;
 }
 
@@ -120,6 +121,30 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
   background-color: var(--clr-blue-2);
+}
+
+form input[type="button"] {
+  background-color: var(--clr-purple);
+  color: var(--clr-white);
+
+  width: 250px;
+  height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+
+  border: none;
+  border-radius: 4px;
+
+  font-family: "Play";
+  font-size: 1.1em;
+  font-weight: 400;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+form input[type="button"]:hover {
+  background-color: var(--clr-purple-2);
 }
 
 /* ------------------------------------------------------ */
