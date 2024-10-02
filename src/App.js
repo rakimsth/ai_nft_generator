@@ -124,16 +124,13 @@ function App() {
         },
       });
       if (IpfsHash) {
-        await pinata.updateMetadata({
-          cid: IpfsHash,
-          name: name,
-          keyValues: {
-            name: name,
-            description: description,
-            image: `https://${process.env.REACT_APP_PINATA_GATEWAY_URL}/ipfs/${IpfsHash}`,
-          },
+        const { IpfsHash: jsonHash } = await pinata.upload.json({
+          name,
+          description: description,
+          image: `ipfs://${IpfsHash}`,
+          attributes: [],
         });
-        const url = `https://${process.env.REACT_APP_PINATA_GATEWAY_URL}/ipfs/${IpfsHash}`;
+        const url = `https://${process.env.REACT_APP_PINATA_GATEWAY_URL}/ipfs/${jsonHash}`;
         setURL(url);
         return url;
       }
