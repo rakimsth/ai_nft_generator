@@ -212,6 +212,14 @@ function App() {
           View&nbsp;
           <a href={url} target="_blank" rel="noreferrer">
             Metadata
+          </a>{" "}
+          &nbsp;
+          <a
+            href="https://testnets.opensea.io/account"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Vist Opensea
           </a>
         </p>
       )}
