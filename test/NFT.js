@@ -2,7 +2,8 @@ const { expect } = require('chai');
 const { ethers } = require('hardhat');
 
 const tokens = (n) => {
-  return ethers.utils.parseUnits(n.toString(), 'ether')
+  //return ethers.utils.parseUnits(n.toString(), 'ether')
+  return ethers.parseUnits(n.toString(), 'ether')
 }
 
 describe('NFT', () => {
@@ -21,10 +22,11 @@ describe('NFT', () => {
     // Deploy Real Estate
     const NFT = await ethers.getContractFactory('NFT')
     nft = await NFT.deploy(NAME, SYMBOL, COST)
-
+    await nft.waitForDeployment()
     // Mint 
     const transaction = await nft.connect(minter).mint(URL, { value: COST })
     await transaction.wait()
+
   })
 
   describe('Deployment', () => {
@@ -54,6 +56,40 @@ describe('NFT', () => {
       const result = await nft.totalSupply()
       expect(result).to.be.equal("1")
     })
+
+    it('Pauses minting', async () => {
+      await nft.pause()
+    // Check if minting is paused by attempting to mint a token
+      await expect(nft.connect(minter).mint(URL, { value: COST }))
+        .to.be.revertedWith('Pausable: paused')  // Ensure it reverts with pause error message
+    })
+
+    it('Unpauses minting', async () => {
+         // First, ensure the contract is paused
+      await nft.connect(deployer).pause()
+
+      // Now, unpause the contract
+      await nft.connect(deployer).unpause()
+
+      // After unpausing, minting should succeed
+      await nft.connect(minter).mint(URL, { value: COST })
+
+      const result = await nft.ownerOf("2")
+      expect(result).to.be.equal(minter.address) // Mint should succeed and assign token
+    })
+
+     // Test updating the cost
+    it('Updates minting cost', async () => {
+      const NEW_COST = ethers.parseUnits('2', 'ether')
+
+      // Owner updates the minting cost
+      await nft.connect(deployer).updateCost(NEW_COST)
+
+      // Check if the cost was updated correctly
+      const result = await nft.cost()
+      expect(result).to.be.equal(NEW_COST)
+    })
+
   })
 
   describe('Withdrawing', () => {
@@ -61,9 +97,9 @@ describe('NFT', () => {
 
     beforeEach(async () => {
       balanceBefore = await ethers.provider.getBalance(deployer.address)
-
       const transaction = await nft.connect(deployer).withdraw()
       await transaction.wait()
+
     })
 
     it('Updates the owner balance', async () => {
@@ -72,7 +108,7 @@ describe('NFT', () => {
     })
 
     it('Updates the contract balance', async () => {
-      const result = await ethers.provider.getBalance(nft.address)
+      const result = await ethers.provider.getBalance(await nft.getAddress())
       expect(result).to.equal(0)
     })
   })
