@@ -36,6 +36,11 @@
       "react-app/jest"
     ]
   },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.12",
+    "typescript": "^5.6.2"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,9 +52,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.12"
   }
 }

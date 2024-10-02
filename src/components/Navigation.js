@@ -6,7 +6,9 @@ const Navigation = () => {
       <div className="nav__brand">
         <h1>AI NFT Generator</h1>
       </div>
-      <ConnectButton />
+      <div className="d-flex flex-row-reverse">
+        <ConnectButton />
+      </div>
     </nav>
   );
 };
