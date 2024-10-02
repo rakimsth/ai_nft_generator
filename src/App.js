@@ -212,8 +212,8 @@ function App() {
           View&nbsp;
           <a href={url} target="_blank" rel="noreferrer">
             Metadata
-          </a>{" "}
-          &nbsp;
+          </a>
+          &nbsp; / &nbsp;
           <a
             href="https://testnets.opensea.io/account"
             target="_blank"
