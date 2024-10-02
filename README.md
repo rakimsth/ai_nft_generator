@@ -20,7 +20,7 @@
 
 ### 2. Install Dependencies:
 
-`$ npm install --force`
+`$ pnpm install`
 
 ### 3. Setup .env file:
 
