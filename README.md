@@ -1,5 +1,9 @@
 # AI NFT Generator
 
+## Presentation Link
+
+[View](https://app.presentations.ai/view/EJSdpt)
+
 ## Technology Stack & Tools
 
 - Solidity (Writing Smart Contracts & Tests)
