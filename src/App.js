@@ -219,7 +219,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Vist Opensea
+            Visit Opensea
           </a>
         </p>
       )}
